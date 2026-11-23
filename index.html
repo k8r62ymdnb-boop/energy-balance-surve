@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>استبيان الوعي بتوازن الطاقة وإدارة الوزن لدى طالبات الجامعة</title>
+  <style>
+    :root {
+      --bg-beige: #FAF6EE;
+      --bg-beige-warm: #F3ECE0;
+      --card-white: #FFFDF9;
+      --green-soft: #E5F3EC;
+      --green-accent: #2E7D63;
+      --green-border: #B7DEC9;
+      --sky-soft: #E6F2FA;
+      --sky-accent: #256D99;
+      --sky-border: #B8D9EE;
+      --text-main: #1E333B;
+      --text-muted: #526972;
+      --border-soft: #E2D9C8;
+      --shadow-soft: 0 10px 30px rgba(30, 51, 59, 0.06);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Tajawal", "Cairo", "Segoe UI", Tahoma, Arial, sans-serif;
+      background: linear-gradient(160deg, var(--bg-beige) 0%, var(--sky-soft) 52%, var(--green-soft) 100%);
+      background-attachment: fixed;
+      color: var(--text-main);
+      line-height: 1.75;
+      padding: 24px 16px 56px;
+      min-height: 100vh;
+    }
+
+    .survey-container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .hero-card {
+      background: var(--card-white);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+
+    .hero-top-bar {
+      height: 8px;
+      background: linear-gradient(90deg, var(--green-accent), var(--sky-accent), #88C9B2);
+    }
+
+    .hero-body {
+      padding: 28px 26px 26px;
+    }
+
+    .academic-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .academic-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green-soft);
+      color: var(--green-accent);
+      border: 1px solid var(--green-border);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .topic-pill {
+      display: inline-flex;
+      align-items: center;
+      background: var(--sky-soft);
+      color: var(--sky-accent);
+      border: 1px solid var(--sky-border);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      direction: ltr;
+    }
+
+    .hero-header-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    h1.survey-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.45;
+    }
+
+    .balance-graphic {
+      width: 90px;
+      height: 90px;
+      background: linear-gradient(135deg, var(--sky-soft), var(--green-soft));
+      border: 1px solid var(--border-soft);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .intro-box {
+      background: var(--bg-beige);
+      border-right: 4px solid var(--sky-accent);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+    }
+
+    .intro-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--sky-accent);
+      margin-bottom: 6px;
+    }
+
+    .intro-text {
+      color: var(--text-main);
+      font-size: 1rem;
+    }
+
+    .progress-card {
+      background: var(--card-white);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 13px 18px;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 16px rgba(30, 51, 59, 0.05);
+      position: sticky;
+      top: 10px;
+      z-index: 20;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .progress-count {
+      color: var(--green-accent);
+    }
+
+    .progress-track {
+      height: 9px;
+      background: var(--bg-beige-warm);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--sky-accent), var(--green-accent));
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    .section-block {
+      background: var(--card-white);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 24px 22px;
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+      border-bottom: 2px dashed var(--border-soft);
+    }
+
+    .section-icon-box {
+      width: 46px;
+      height: 46px;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .section-name .section-icon-box {
+      background: var(--sky-soft);
+      color: var(--sky-accent);
+      border: 1px solid var(--sky-border);
+    }
+
+    .section-1 .section-icon-box {
+      background: var(--sky-soft);
+      color: var(--sky-accent);
+      border: 1px solid var(--sky-border);
+    }
+
+    .section-2 .section-icon-box {
+      background: var(--green-soft);
+      color: var(--green-accent);
+      border: 1px solid var(--green-border);
+    }
+
+    .section-3 .section-icon-box {
+      background: var(--bg-beige-warm);
+      color: var(--sky-accent);
+      border: 1px solid var(--border-soft);
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .name-input {
+      width: 100%;
+      padding: 13px 15px;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--text-main);
+      background: var(--card-white);
+      border: 1.5px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .name-input:focus {
+      outline: none;
+      border-color: var(--sky-accent);
+      box-shadow: 0 0 0 3px rgba(37, 109, 153, 0.14);
+    }
+
+    .question-card {
+      background: var(--bg-beige);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 18px 18px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .question-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .question-card.answered {
+      background: #FCFDFB;
+      border-color: var(--green-border);
+      box-shadow: 0 4px 14px rgba(46, 125, 99, 0.06);
+    }
+
+    .question-text {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .option-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--card-white);
+      border: 1.5px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      padding: 12px 15px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .option-item:hover {
+      border-color: var(--sky-accent);
+      background: var(--sky-soft);
+    }
+
+    .option-item input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .custom-radio {
+      width: 21px;
+      height: 21px;
+      min-width: 21px;
+      border-radius: 50%;
+      border: 2px solid #8FA6B0;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .custom-radio::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green-accent);
+      transform: scale(0);
+      transition: transform 0.2s ease;
+    }
+
+    .option-item input[type="radio"]:checked + .custom-radio {
+      border-color: var(--green-accent);
+      background: var(--green-soft);
+    }
+
+    .option-item input[type="radio"]:checked + .custom-radio::after {
+      transform: scale(1);
+    }
+
+    .option-item.selected {
+      border-color: var(--green-accent);
+      background: var(--green-soft);
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .option-label-text {
+      font-size: 0.98rem;
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .submit-card {
+      background: var(--card-white);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 24px 22px;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .thank-you-banner {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--green-soft);
+      color: var(--green-accent);
+      border: 1px solid var(--green-border);
+      padding: 11px 20px;
+      border-radius: var(--radius-md);
+      font-size: 1.06rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, var(--green-accent), #256852);
+      color: #FFFFFF;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 13px 30px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(46, 125, 99, 0.24);
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(46, 125, 99, 0.32);
+    }
+
+    .btn-export {
+      background: var(--sky-soft);
+      color: var(--sky-accent);
+      border: 1px solid var(--sky-border);
+      border-radius: var(--radius-sm);
+      padding: 13px 22px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn-export:hover {
+      background: #D5E9F6;
+    }
+
+    .btn-reset {
+      background: var(--bg-beige);
+      color: var(--text-muted);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      padding: 13px 20px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-reset:hover {
+      background: var(--bg-beige-warm);
+      color: var(--text-main);
+    }
+
+    .status-message {
+      margin-top: 16px;
+      padding: 13px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.96rem;
+      font-weight: 700;
+      display: none;
+    }
+
+    .status-message.warn {
+      display: block;
+      background: var(--bg-beige-warm);
+      color: #8A5A14;
+      border: 1px solid #E5C694;
+    }
+
+    .status-message.success {
+      display: block;
+      background: var(--green-soft);
+      color: var(--green-accent);
+      border: 1px solid var(--green-border);
+    }
+
+    .summary-box {
+      margin-top: 18px;
+      text-align: right;
+      background: var(--bg-beige);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: none;
+    }
+
+    .summary-box.visible {
+      display: block;
+    }
+
+    .summary-box h3 {
+      font-size: 1rem;
+      color: var(--sky-accent);
+      margin-bottom: 10px;
+    }
+
+    .summary-list {
+      list-style: none;
+      font-size: 0.92rem;
+    }
+
+    .summary-list li {
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border-soft);
+    }
+
+    .summary-list li:last-child {
+      border-bottom: none;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 14px 10px 42px;
+      }
+
+      .hero-body {
+        padding: 20px 16px;
+      }
+
+      .hero-header-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .balance-graphic {
+        width: 72px;
+        height: 72px;
+      }
+
+      h1.survey-title {
+        font-size: 1.38rem;
+      }
+
+      .section-block {
+        padding: 18px 14px;
+      }
+
+      .question-card {
+        padding: 15px 13px;
+      }
+
+      .btn-submit,
+      .btn-export,
+      .btn-reset {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="survey-container">
+    <header class="hero-card">
+      <div class="hero-top-bar"></div>
+      <div class="hero-body">
+        <div class="academic-badge-row">
+          <span class="academic-pill">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+            </svg>
+            مشروع جامعي — الصحة العامة
+          </span>
+          <span class="topic-pill">Weight Management and Energy Balance</span>
+        </div>
+
+        <div class="hero-header-grid">
+          <h1 class="survey-title">استبيان الوعي بتوازن الطاقة وإدارة الوزن لدى طالبات الجامعة</h1>
+
+          <div class="balance-graphic" aria-hidden="true">
+            <svg width="62" height="62" viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="32" r="28" fill="#FFFFFF" fill-opacity="0.75" />
+              <line x1="32" y1="14" x2="32" y2="48" stroke="#256D99" stroke-width="2.6" stroke-linecap="round" />
+              <line x1="15" y1="24" x2="49" y2="24" stroke="#2E7D63" stroke-width="2.8" stroke-linecap="round" />
+              <path d="M25 48H39" stroke="#256D99" stroke-width="3" stroke-linecap="round" />
+              <path d="M49 24L44 35H54L49 24Z" fill="#E5F3EC" stroke="#2E7D63" stroke-width="1.8" stroke-linejoin="round" />
+              <path d="M49 27C51.5 27 53 29 53 31.5C50.5 31.5 49 30 49 27Z" fill="#2E7D63" />
+              <path d="M15 24L10 35H20L15 24Z" fill="#E6F2FA" stroke="#256D99" stroke-width="1.8" stroke-linejoin="round" />
+              <polyline points="11,31 13.5,31 15,28.5 16.5,33 19,31" fill="none" stroke="#256D99" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+
+        <section class="intro-box" aria-label="مقدمة الاستبيان">
+          <div class="intro-label">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            مقدمة الاستبيان:
+          </div>
+          <p class="intro-text">
+            يهدف هذا الاستبيان إلى قياس مدى وعي طالبات الجامعة بمفهوم توازن الطاقة، والعادات الغذائية الصحية، وأهمية النشاط البدني في المحافظة على وزن صحي. جميع الإجابات سرية ومجهولة الهوية، وستُستخدم لأغراض تعليمية فقط.
+          </p>
+        </section>
+      </div>
+    </header>
+
+    <div class="progress-card" aria-live="polite">
+      <div class="progress-meta">
+        <span>نسبة الإكمال</span>
+        <span class="progress-count" id="progressText">0 / 11</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressBar"></div>
+      </div>
+    </div>
+
+    <form id="energyBalanceSurvey" novalidate>
+      <!-- بيانات المشاركة -->
+      <section class="section-block section-name" aria-labelledby="sec-name-title">
+        <div class="section-header">
+          <div class="section-icon-box" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <h2 class="section-title" id="sec-name-title">بيانات المشاركة</h2>
+        </div>
+
+        <article class="question-card" data-question="name">
+          <label for="participantName" class="question-text" style="display:block;">الاسم</label>
+          <input
+            type="text"
+            id="participantName"
+            name="participantName"
+            class="name-input"
+            placeholder="اكتبي الاسم هنا..."
+            autocomplete="name"
+          />
+        </article>
+      </section>
+
+      <!-- القسم الأول -->
+      <section class="section-block section-1" aria-labelledby="sec1-title">
+        <div class="section-header">
+          <div class="section-icon-box" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 18h6"></path>
+              <path d="M10 22h4"></path>
+              <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path>
+            </svg>
+          </div>
+          <h2 class="section-title" id="sec1-title">القسم الأول: الوعي والمعرفة</h2>
+        </div>
+
+        <article class="question-card" data-question="q1">
+          <p class="question-text">1. هل سبق لكِ سماع مصطلح توازن الطاقة (Energy Balance)؟</p>
+          <div class="options-list">
+            <label class="option-item">
+              <input type="radio" name="q1" value="نعم" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">نعم</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q1" value="لا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">لا</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q1" value="لست متأكدة" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">لست متأكدة</span>
+            </label>
+          </div>
+        </article>
+
+        <article class="question-card" data-question="q2">
+          <p class="question-text">2. ماذا يعني مفهوم توازن الطاقة؟</p>
+          <div class="options-list">
+            <label class="option-item">
+              <input type="radio" name="q2" value="أن تكون السعرات الحرارية المتناولة مساوية للسعرات الحرارية المستهلكة." />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">أن تكون السعرات الحرارية المتناولة مساوية للسعرات الحرارية المستهلكة.</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q2" value="أن تكون السعرات المتناولة أكثر من المستهلكة." />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">أن تكون السعرات المتناولة أكثر من المستهلكة.</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q2" value="أن تكون السعرات المستهلكة أكثر من المتناولة." />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">أن تكون السعرات المستهلكة أكثر من المتناولة.</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q2" value="لا أعرف." />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">لا أعرف.</span>
+            </label>
+          </div>
+        </article>
+
+        <article class="question-card" data-question="q3">
+          <p class="question-text">3. هل تعتقدين أن تخطي الوجبات قد يؤثر على مستوى الطاقة والتركيز؟</p>
+          <div class="options-list">
+            <label class="option-item">
+              <input type="radio" name="q3" value="أوافق بشدة" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">أوافق بشدة</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q3" value="أوافق" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">أوافق</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q3" value="محايدة" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">محايدة</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q3" value="لا أوافق" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">لا أوافق</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q3" value="لا أوافق بشدة" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">لا أوافق بشدة</span>
+            </label>
+          </div>
+        </article>
+      </section>
+
+      <!-- القسم الثاني -->
+      <section class="section-block section-2" aria-labelledby="sec2-title">
+        <div class="section-header">
+          <div class="section-icon-box" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+            </svg>
+          </div>
+          <h2 class="section-title" id="sec2-title">القسم الثاني: العادات الغذائية ونمط الحياة</h2>
+        </div>
+
+        <article class="question-card" data-question="q4">
+          <p class="question-text">4. كم مرة تتناولين وجبات متوازنة تحتوي على مجموعات غذائية متنوعة؟</p>
+          <div class="options-list">
+            <label class="option-item">
+              <input type="radio" name="q4" value="دائمًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">دائمًا</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q4" value="غالبًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">غالبًا</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q4" value="أحيانًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">أحيانًا</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q4" value="نادرًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">نادرًا</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q4" value="أبدًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">أبدًا</span>
+            </label>
+          </div>
+        </article>
+
+        <article class="question-card" data-question="q5">
+          <p class="question-text">5. كم مرة تمارسين النشاط البدني أو الرياضة؟</p>
+          <div class="options-list">
+            <label class="option-item">
+              <input type="radio" name="q5" value="يوميًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">يوميًا</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q5" value="من 3 إلى 5 مرات أسبوعيًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">من 3 إلى 5 مرات أسبوعيًا</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q5" value="من مرة إلى مرتين أسبوعيًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">من مرة إلى مرتين أسبوعيًا</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q5" value="نادرًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">نادرًا</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q5" value="أبدًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">أبدًا</span>
+            </label>
+          </div>
+        </article>
+
+        <article class="question-card" data-question="q6">
+          <p class="question-text">6. كم مرة تتناولين الوجبات السريعة أو المشروبات السكرية؟</p>
+          <div class="options-list">
+            <label class="option-item">
+              <input type="radio" name="q6" value="يوميًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">يوميًا</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q6" value="عدة مرات أسبوعيًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">عدة مرات أسبوعيًا</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q6" value="مرة أسبوعيًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">مرة أسبوعيًا</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q6" value="نادرًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">نادرًا</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q6" value="أبدًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">أبدًا</span>
+            </label>
+          </div>
+        </article>
+      </section>
+
+      <!-- القسم الثالث -->
+      <section class="section-block section-3" aria-labelledby="sec3-title">
+        <div class="section-header">
+          <div class="section-icon-box" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <h2 class="section-title" id="sec3-title">القسم الثالث: الآراء والاتجاهات</h2>
+        </div>
+
+        <article class="question-card" data-question="q7">
+          <p class="question-text">7. هل تعتقدين أن المحافظة على توازن الطاقة تساعد في الوقاية من الأمراض المزمنة مثل السكري وأمراض القلب؟</p>
+          <div class="options-list">
+            <label class="option-item">
+              <input type="radio" name="q7" value="نعم" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">نعم</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q7" value="لا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">لا</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q7" value="لست متأكدة" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">لست متأكدة</span>
+            </label>
+          </div>
+        </article>
+
+        <article class="question-card" data-question="q8">
+          <p class="question-text">8. هل تعتقدين أن تقليل السعرات الحرارية بشكل مفرط ولفترة طويلة قد يؤثر سلبًا على الصحة الجسدية والنفسية؟</p>
+          <div class="options-list">
+            <label class="option-item">
+              <input type="radio" name="q8" value="أوافق بشدة" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">أوافق بشدة</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q8" value="أوافق" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">أوافق</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q8" value="محايدة" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">محايدة</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q8" value="لا أوافق" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">لا أوافق</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q8" value="لا أوافق بشدة" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">لا أوافق بشدة</span>
+            </label>
+          </div>
+        </article>
+
+        <article class="question-card" data-question="q9">
+          <p class="question-text">9. برأيك، ما العامل الأهم للمحافظة على وزن صحي؟</p>
+          <div class="options-list">
+            <label class="option-item">
+              <input type="radio" name="q9" value="التغذية المتوازنة" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">التغذية المتوازنة</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q9" value="ممارسة النشاط البدني بانتظام" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">ممارسة النشاط البدني بانتظام</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q9" value="النوم الكافي" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">النوم الكافي</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q9" value="جميع ما سبق" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">جميع ما سبق</span>
+            </label>
+          </div>
+        </article>
+
+        <article class="question-card" data-question="q10">
+          <p class="question-text">10. كيف تقيّمين مستوى معرفتك بإدارة الوزن بطريقة صحية؟</p>
+          <div class="options-list">
+            <label class="option-item">
+              <input type="radio" name="q10" value="ممتاز" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">ممتاز</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q10" value="جيد جدًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">جيد جدًا</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q10" value="متوسط" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">متوسط</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q10" value="ضعيف" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">ضعيف</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q10" value="ضعيف جدًا" />
+              <span class="custom-radio" aria-hidden="true"></span>
+              <span class="option-label-text">ضعيف جدًا</span>
+            </label>
+          </div>
+        </article>
+      </section>
+
+      <footer class="submit-card">
+        <div class="thank-you-banner">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span>شكرًا لمشاركتك ووقتك!</span>
+        </div>
+
+        <div class="btn-row">
+          <button type="submit" class="btn-submit">إرسال الاستبيان</button>
+          <button type="button" class="btn-export" id="exportCsvBtn">حفظ الإجابات (CSV)</button>
+          <button type="button" class="btn-reset" id="resetBtn">إعادة التعيين</button>
+        </div>
+
+        <div class="status-message" id="statusMsg" role="status" aria-live="polite"></div>
+
+        <div class="summary-box" id="summaryBox">
+          <h3>ملخص إجاباتك المسجّلة:</h3>
+          <ul class="summary-list" id="summaryList"></ul>
+        </div>
+      </footer>
+    </form>
+  </main>
+
+  <script>
+    const GOOGLE_SHEETS_WEBAPP_URL = "";
+
+    (function () {
+      const form = document.getElementById("energyBalanceSurvey");
+      const nameInput = document.getElementById("participantName");
+      const nameCard = document.querySelector('.question-card[data-question="name"]');
+      const totalQuestions = 10;
+      const totalItems = 11;
+      const progressText = document.getElementById("progressText");
+      const progressBar = document.getElementById("progressBar");
+      const statusMsg = document.getElementById("statusMsg");
+      const resetBtn = document.getElementById("resetBtn");
+      const exportCsvBtn = document.getElementById("exportCsvBtn");
+      const summaryBox = document.getElementById("summaryBox");
+      const summaryList = document.getElementById("summaryList");
+
+      function getNameValue() {
+        return nameInput.value.trim();
+      }
+
+      function getAnswers() {
+        const results = [];
+        for (let i = 1; i <= totalQuestions; i++) {
+          const qName = "q" + i;
+          const card = document.querySelector(`.question-card[data-question="${qName}"]`);
+          const qText = card.querySelector(".question-text").textContent.trim();
+          const checked = form.querySelector(`input[name="${qName}"]:checked`);
+          results.push({
+            id: i,
+            question: qText,
+            answer: checked ? checked.value : ""
+          });
+        }
+        return results;
+      }
+
+      function updateUI() {
+        let completedCount = 0;
+
+        if (getNameValue() !== "") {
+          completedCount++;
+          nameCard.classList.add("answered");
+        } else {
+          nameCard.classList.remove("answered");
+        }
+
+        for (let i = 1; i <= totalQuestions; i++) {
+          const qName = "q" + i;
+          const card = document.querySelector(`.question-card[data-question="${qName}"]`);
+          const inputs = form.querySelectorAll(`input[name="${qName}"]`);
+          let isChecked = false;
+
+          inputs.forEach((input) => {
+            const label = input.closest(".option-item");
+            if (input.checked) {
+              isChecked = true;
+              label.classList.add("selected");
+            } else {
+              label.classList.remove("selected");
+            }
+          });
+
+          if (isChecked) {
+            completedCount++;
+            card.classList.add("answered");
+          } else {
+            card.classList.remove("answered");
+          }
+        }
+
+        const percent = Math.round((completedCount / totalItems) * 100);
+        progressText.textContent = `${completedCount} / ${totalItems}`;
+        progressBar.style.width = `${percent}%`;
+      }
+
+      async function sendToGoogleSheets(participantName, answers) {
+        if (!GOOGLE_SHEETS_WEBAPP_URL) return false;
+        const payload = {
+          timestamp: new Date().toISOString(),
+          name: participantName,
+          answers: answers
+        };
+        await fetch(GOOGLE_SHEETS_WEBAPP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        return true;
+      }
+
+      form.addEventListener("input", () => {
+        statusMsg.className = "status-message";
+        statusMsg.textContent = "";
+        updateUI();
+      });
+
+      form.addEventListener("change", () => {
+        statusMsg.className = "status-message";
+        statusMsg.textContent = "";
+        updateUI();
+      });
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const participantName = getNameValue();
+        const answers = getAnswers();
+        const answeredQuestionsCount = answers.filter((a) => a.answer !== "").length;
+        const totalCompleted = (participantName ? 1 : 0) + answeredQuestionsCount;
+
+        let firstMissing = null;
+        if (!participantName) {
+          firstMissing = nameCard;
+        } else {
+          for (let i = 1; i <= totalQuestions; i++) {
+            const qName = "q" + i;
+            const checked = form.querySelector(`input[name="${qName}"]:checked`);
+            if (!checked) {
+              firstMissing = document.querySelector(`.question-card[data-question="${qName}"]`);
+              break;
+            }
+          }
+        }
+
+        if (totalCompleted < totalItems) {
+          summaryBox.classList.remove("visible");
+          statusMsg.className = "status-message warn";
+          statusMsg.textContent = `تم إكمال ${totalCompleted} من أصل ${totalItems} (الاسم + 10 أسئلة).`;
+          if (firstMissing) {
+            firstMissing.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+          return;
+        }
+
+        summaryList.innerHTML = "";
+        const nameLi = document.createElement("li");
+        nameLi.innerHTML = `<strong>الاسم</strong><br><span>${participantName}</span>`;
+        summaryList.appendChild(nameLi);
+
+        answers.forEach((item) => {
+          const li = document.createElement("li");
+          li.innerHTML = `<strong>${item.question}</strong><br><span>${item.answer}</span>`;
+          summaryList.appendChild(li);
+        });
+        summaryBox.classList.add("visible");
+
+        try {
+          const sent = await sendToGoogleSheets(participantName, answers);
+          statusMsg.className = "status-message success";
+          statusMsg.textContent = sent
+            ? "تم إرسال إجاباتك وحفظها بنجاح. شكرًا لمشاركتك ووقتك!"
+            : "تم تجهيز إجاباتك بنجاح. شكرًا لمشاركتك ووقتك!";
+        } catch (err) {
+          statusMsg.className = "status-message success";
+          statusMsg.textContent = "تم تسجيل إجاباتك. شكرًا لمشاركتك ووقتك!";
+        }
+
+        statusMsg.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+
+      exportCsvBtn.addEventListener("click", () => {
+        const participantName = getNameValue();
+        const answers = getAnswers();
+        const rows = [
+          ["Field / Question", "Response"],
+          ['"الاسم"', '"' + (participantName || "غير مدخل").replace(/"/g, '""') + '"']
+        ];
+        answers.forEach((item) => {
+          const qClean = '"' + item.question.replace(/"/g, '""') + '"';
+          const aClean = '"' + (item.answer || "غير مجاب").replace(/"/g, '""') + '"';
+          rows.push([qClean, aClean]);
+        });
+        const csvContent = "﻿" + rows.map((r) => r.join(",")).join("
+");
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "energy_balance_survey_response.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      });
+
+      resetBtn.addEventListener("click", () => {
+        form.reset();
+        statusMsg.className = "status-message";
+        statusMsg.textContent = "";
+        summaryBox.classList.remove("visible");
+        updateUI();
+      });
+
+      updateUI();
+    })();
+  </script>
+</body>
+</html>
